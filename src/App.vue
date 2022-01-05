@@ -1,17 +1,44 @@
 <template>
-  <div id="app">
-    <div class="container flex flex-col h-full justify-center items-center  w-full max-w-xl">
+  <div id="app" class="h-full w-full">
+    <div v-if="choosencategory == 0" class="flex flex-column justify-center items-center h-full w-full"><h1 class="mt-6 mb-6"> Wybierz swojego przeciwnika:</h1>
+
+    <div class="container grid grid-cols-2 h-full w-full gap-3">
+
+      <button class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-3 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+      v-for="item in categories" :key="item.id" v-bind:id="item.id"  @click="choosecat($event)"> {{item.name}} </button>
+
+      <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+      @click="randomize()"
+      >
+        Jestem gotowy na prawdziwego przeciwnika
+      </button>
+
+    </div>
+    </div>
 
 
+    <div v-if="choosencategory == 1" class="container flex flex-col h-full justify-center items-center w-full">
       <div v-if="summaryscreenshown == 0" class="bg-white p-12 rounded-lg shadow-lg w-full mt-8 pt-2">
         <h1 class="font-bold text-4xl text-center text-purple-800"> Very important test na odlewnika!!!!</h1>
+
+        <div v-if="notrandom == 1">
         <h1 class="font-bold text-4xl text-center text-purple-800"> <img v-bind:src="questions[index]['question']"/> </h1>
-      <label v-for="(answer,key) in questions[0]['answers']" v-bind:key="answer"
+      <label  v-for="(answer,key) in questions[index, indexmax]['answers']" v-bind:key="answer"
              class="block text-xl w-full mt-4 border border-gray-400 rounded-lg py-3 px-6 text-lg-start hover:bg-indigo-100 cursor-pointer" :class="{allgood: allgood,  somethingbad: somethingbad}">
       <input type="checkbox" v-bind:id="key" v-bind:value="key" class="checked:bg-blue-500 mr-3" v-model="selectedAnswers" />
         {{key }}.{{ answer }}
       </label>
       <div class="mt-4" v-if="show_ans == 1"> <p class="text-lx text-green-500"> Dobre odpowiedzi to: {{questions[index]['correctAnswers']}} </p></div>
+        </div>
+        <div v-else>
+          <h1 class="font-bold text-4xl text-center text-purple-800"> <img v-bind:src="questions[randomquestionnumber]['question']"/> </h1>
+          <label  v-for="(answer,key) in questions[randomquestionnumber]['answers']" v-bind:key="answer"
+                  class="block text-xl w-full mt-4 border border-gray-400 rounded-lg py-3 px-6 text-lg-start hover:bg-indigo-100 cursor-pointer" :class="{allgood: allgood,  somethingbad: somethingbad}">
+            <input type="checkbox" v-bind:id="key" v-bind:value="key" class="checked:bg-blue-500 mr-3" v-model="selectedAnswers" />
+            {{key }}.{{ answer }}
+          </label>
+          <div class="mt-4" v-if="show_ans == 1"> <p class="text-lx text-green-500"> Dobre odpowiedzi to: {{questions[randomquestionnumber]['correctAnswers']}} </p></div>
+        </div>
 
 
         <div class="w-full flex justify-end gap-10">
@@ -22,8 +49,16 @@
       </div>
 
       <div v-if="summaryscreenshown == 1" class="bg-white p-12 rounded-lg shadow-lg w-full mt-8">
+        <div v-if="notrandom == 1">
         <h1> Twój wynik to:</h1>
-        <p> {{points}} / {{questions.length}}</p>
+        <p> {{points}} / {{indexmax-  pointsstart}}</p>
+          </div>
+        <div v-else>
+          <h1> Twój wynik to:</h1>
+          <p> {{points}} / 40</p>
+          <p class="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400" v-if="40/this.points<=2">🎉🎉🎉 Zdaned!!!!!! 🎉🎉🎉</p>
+          <p class="bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400" v-else>😿😿😿 Niezdaned, weź się w garść pociesz kotka i zdaj następne oki? :( 😿😿😿</p>
+        </div>
       </div>
 
     </div>
@@ -39,11 +74,18 @@ export default {
     return {
       publicPath: process.env.BASE_URL,
       index: 0,
+      usethis: 0,
+      pointsstart: 0,
+      indexmax: 0,
+      indexrandom: 0,
+      randomquestionnumber: 0,
+      choosencategory: 0,
       hiddenbutton: 0,
       showsummary: 0,
       points: 0,
       summaryscreenshown: 0,
       showcheck: 1,
+      notrandom: 1,
       allgood: false,
       somethingbad: false,
       show_ans: 0,
@@ -62,7 +104,7 @@ export default {
         {
           question: '3.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C"},
-          correctAnswers: ['a']
+          correctAnswers: ['c']
         },
         {
           question: '4.JPG',
@@ -337,7 +379,7 @@ export default {
         {
           question: '58.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a']
         },
         {
           question: '59.JPG',
@@ -362,7 +404,7 @@ export default {
         {
           question: '63.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: []
+          correctAnswers: ['b']
         },
         {
           question: '64.JPG',
@@ -392,16 +434,16 @@ export default {
         {
           question: '69.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: []
+          correctAnswers: ['c','d']
         },
         {
           question: '70.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: []
+          correctAnswers: ['b']
         },{
           question: '71.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: []
+          correctAnswers: ['a','b']
         },
         {
           question: '72.JPG',
@@ -411,7 +453,7 @@ export default {
         {
           question: '73.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['d']
+          correctAnswers: ['a','d']
         },
         {
           question: '74.JPG',
@@ -531,7 +573,7 @@ export default {
         {
           question: '97.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['C']
         },
         {
           question: '98.JPG',
@@ -546,7 +588,7 @@ export default {
         {
           question: '100.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b']
+          correctAnswers: ['a','c']
         },
         {
           question: '101.JPG',
@@ -696,87 +738,87 @@ export default {
         {
           question: '130.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['b','c','d']
         },
         {
           question: '131.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','b']
         },
         {
           question: '132.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','b','d']
         },
         {
           question: '133.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','b','d']
         },
         {
           question: '134.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','b','c','d']
         },
         {
           question: '135.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','b','d']
         },
         {
           question: '136.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['b','c','d']
         },
         {
           question: '137.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['c']
         },
         {
           question: '138.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','c']
         },
         {
           question: '139.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','b','d']
         },
         {
           question: '140.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','c','d']
         },
         {
           question: '141.JPG',
-          answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C"},
+          correctAnswers: ['c']
         },
         {
           question: '142.JPG',
-          answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C"},
+          correctAnswers: ['a']
         },
         {
           question: '143.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['d']
         },
         {
           question: '144.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','b','c','d']
         },
         {
           question: '145.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['a','b','d']
         },
         {
           question: '146.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['']
+          correctAnswers: ['b']
         },
         {
           question: '147.JPG',
@@ -826,12 +868,12 @@ export default {
         {
           question: '156.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['c']
+          correctAnswers: ['d']
         },
         {
           question: '157.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['d']
+          correctAnswers: ['c']
         },
         {
           question: '158.JPG',
@@ -856,7 +898,7 @@ export default {
         {
           question: '162.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['c','d']
+          correctAnswers: ['c','a']
         },
         {
           question: '163.JPG',
@@ -886,7 +928,7 @@ export default {
         {
           question: '168.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a']
+          correctAnswers: ['a','b']
         },
         {
           question: '169.JPG',
@@ -913,6 +955,73 @@ export default {
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
           correctAnswers: ['d']
         }
+      ],
+      categories: [
+        {
+          id: 0,
+          name: 'Matematyka',
+          numbers: [0,17]
+        },
+        {
+          id: 1,
+          name: 'Chemia',
+          numbers: [18,37]
+        },
+        {
+          id: 2,
+          name: 'Materiały na formy odlewnicze',
+          numbers: [38,49]
+        },
+        {
+          id: 3,
+          name: 'Krystalizacja',
+          numbers: [50,52]
+        },
+        {
+          id: 4,
+          name: 'Metody odchyłek ważonych',
+          numbers: [53,64]
+        },
+        {
+          id: 5,
+          name: 'CAD',
+          numbers: [65,85]
+        },
+        {
+          id: 6,
+          name: 'BHP',
+          numbers: [86,92]
+        },
+        {
+          id: 7,
+          name: 'Mechanika płynow',
+          numbers: [93,106]
+        },
+        {
+          id: 8,
+          name: 'Symulacje komputerowe procesów wytwarzania',
+          numbers: [107,118]
+        },
+        {
+          id: 9,
+          name: 'Fizykochemia',
+          numbers: [119,128]
+        },
+        {
+          id: 10,
+          name: 'Technologia Form Odlewniczych',
+          numbers: [129,145]
+        },
+        {
+          id: 11,
+          name: 'Grafika Inżynierska',
+          numbers: [146,157]
+        },
+        {
+          id: 12,
+          name: 'Częsci maszyn',
+          numbers: [158,172]
+        }
       ]
     }
   },
@@ -921,6 +1030,7 @@ export default {
     {
       console.log(this.questions.length)
 
+      if( this.notrandom==1){
       if( this.selectedAnswers.sort().join() === this.questions[this.index]['correctAnswers'].sort().join() ) {
       this.points++
       this.allgood = true;
@@ -932,12 +1042,31 @@ export default {
         this.somethingbad = true;
       }
 
-      if(this.index === this.questions.length-1) {
+      if(this.index === this.indexmax-1) {
         this.showcheck = 1
         this.hiddenbutton = 0
         this.showsummary = 1
       } else {
         this.hiddenbutton = 1
+      }
+      } else {
+        if (this.selectedAnswers.sort().join() === this.questions[this.randomquestionnumber]['correctAnswers'].sort().join()) {
+          this.points++
+          this.allgood = true;
+          this.somethingbad = false;
+        } else {
+          console.log('nie!')
+          this.allgood = false;
+          this.somethingbad = true;
+        }
+
+        if (this.index === 39) {
+          this.showcheck = 1
+          this.hiddenbutton = 0
+          this.showsummary = 1
+        } else {
+          this.hiddenbutton = 1
+        }
       }
 
       this.show_ans = 1
@@ -945,12 +1074,13 @@ export default {
     },
     nextquestion()
     {
+      this.indexrandom++
       this.index++
       this.selectedAnswers= []
       this.allgood = false;
       this.somethingbad = false;
       this.show_ans = 0
-      if(this.index === this.questions.length-1) {
+      if(this.index === this.indexmax-1) {
         this.hiddenbutton = 0
         this.showsummary = 1
       }
@@ -958,10 +1088,44 @@ export default {
         this.showcheck = 1
         this.hiddenbutton = 0
       }
+      this.randomquestionnumber = this.usethis[this.index][0]
     },
     showsummaryscreen()
     {
+      if( this.selectedAnswers.sort().join() === this.questions[this.index]['correctAnswers'].sort().join() ) {
+        this.points++
+      }
       this.summaryscreenshown = 1
+    },
+  randomize(){
+    this.randomquestionnumber++
+    this.notrandom = 0
+    this.choosencategory = 1
+    let number_of_items = 40
+    let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173]
+    let result = []
+    let maxitems = 173
+    for (let i=0; i<number_of_items; i++){
+      let min = Math.ceil(0);
+      let max = Math.floor(maxitems);
+      let number = Math.floor(Math.random() * (max - min + 1)) + min;
+      let chosennumber = numbers.splice(number, 1)
+      maxitems--
+      result.push(chosennumber)
+    }
+    this.usethis = result
+
+    this.randomquestionnumber = this.usethis[0][0]
+
+  },
+    choosecat: function(event)
+    {
+      this.notrandom = 1
+      console.log(event.currentTarget.id)
+     this.index = this.categories[event.currentTarget.id]['numbers'][0]
+      this.indexmax = this.categories[event.currentTarget.id]['numbers'][1]
+      this.pointsstart = this.categories[event.currentTarget.id]['numbers'][0]
+      this.choosencategory = 1
     }
   }
 }
