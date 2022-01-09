@@ -448,7 +448,7 @@ export default {
         {
           question: '72.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b','c','d']
+          correctAnswers: ['a','b']
         },
         {
           question: '73.JPG',
@@ -573,7 +573,7 @@ export default {
         {
           question: '97.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['C']
+          correctAnswers: ['c']
         },
         {
           question: '98.JPG',
@@ -723,7 +723,7 @@ export default {
         {
           question: '127.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['A']
+          correctAnswers: ['a']
         },
         {
           question: '128.JPG',
