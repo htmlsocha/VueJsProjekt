@@ -164,7 +164,7 @@ export default {
         {
           question: '15.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C"},
-          correctAnswers: ['c']
+          correctAnswers: ['a']
         },
         {
           question: '16.JPG',
@@ -199,7 +199,7 @@ export default {
         {
           question: '22.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a']
+          correctAnswers: ['a','b']
         },
         {
           question: '23.JPG',
@@ -224,7 +224,7 @@ export default {
         {
           question: '27.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['b']
+          correctAnswers: ['a']
         },
         {
           question: '28.JPG',
@@ -294,7 +294,7 @@ export default {
         {
           question: '41.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b','c']
+          correctAnswers: ['b','c']
         },
         {
           question: '42.JPG',
@@ -319,7 +319,7 @@ export default {
         {
           question: '46.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['b']
+          correctAnswers: ['b','d']
         },
         {
           question: '47.JPG',
@@ -329,7 +329,7 @@ export default {
         {
           question: '48.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b']
+          correctAnswers: ['a','b','c','d']
         },
         {
           question: '49.JPG',
@@ -414,17 +414,17 @@ export default {
         {
           question: '65.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['c']
+          correctAnswers: ['b']
         },
         {
           question: '66.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b']
+          correctAnswers: ['c']
         },
         {
           question: '67.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['c','d']
+          correctAnswers: ['b','c','d']
         },
         {
           question: '68.JPG',
@@ -443,12 +443,12 @@ export default {
         },{
           question: '71.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b']
+          correctAnswers: ['a']
         },
         {
           question: '72.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b']
+          correctAnswers: ['a','b','c','d']
         },
         {
           question: '73.JPG',
@@ -458,7 +458,7 @@ export default {
         {
           question: '74.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','d']
+          correctAnswers: ['a','c','d']
         },
         {
           question: '75.JPG',
@@ -553,12 +553,12 @@ export default {
         {
           question: '93.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b','c']
+          correctAnswers: ['b']
         },
         {
           question: '94.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b']
+          correctAnswers: ['a','b','d']
         },
         {
           question: '95.JPG',
@@ -568,7 +568,7 @@ export default {
         {
           question: '96.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a']
+          correctAnswers: ['c']
         },
         {
           question: '97.JPG',
@@ -583,17 +583,17 @@ export default {
         {
           question: '99.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['b']
+          correctAnswers: ['b','d']
         },
         {
           question: '100.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','c']
+          correctAnswers: ['c']
         },
         {
           question: '101.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['b','d']
+          correctAnswers: ['b','c','d']
         },
         {
           question: '102.JPG',
@@ -618,7 +618,7 @@ export default {
         {
           question: '106.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b','d']
+          correctAnswers: ['a','b']
         },
         {
           question: '107.JPG',
@@ -663,7 +663,7 @@ export default {
         {
           question: '115.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['c']
+          correctAnswers: ['b']
         },
         {
           question: '116.JPG',
@@ -713,7 +713,7 @@ export default {
         {
           question: '125.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a']
+          correctAnswers: ['d']
         },
         {
           question: '126.JPG',
@@ -763,7 +763,7 @@ export default {
         {
           question: '135.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b','d']
+          correctAnswers: ['a','d']
         },
         {
           question: '136.JPG',
@@ -783,17 +783,17 @@ export default {
         {
           question: '139.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b','d']
+          correctAnswers: ['b','d']
         },
         {
           question: '140.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','c','d']
+          correctAnswers: ['a','b','c','d']
         },
         {
           question: '141.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C"},
-          correctAnswers: ['c']
+          correctAnswers: ['b,''c']
         },
         {
           question: '142.JPG',
@@ -818,7 +818,7 @@ export default {
         {
           question: '146.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['b']
+          correctAnswers: ['b','c']
         },
         {
           question: '147.JPG',
@@ -828,7 +828,7 @@ export default {
         {
           question: '148.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['c']
+          correctAnswers: ['a']
         },
         {
           question: '149.JPG',
@@ -898,7 +898,7 @@ export default {
         {
           question: '162.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['c','a']
+          correctAnswers: ['b','d']
         },
         {
           question: '163.JPG',
@@ -928,7 +928,7 @@ export default {
         {
           question: '168.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b']
+          correctAnswers: ['a']
         },
         {
           question: '169.JPG',
@@ -943,7 +943,7 @@ export default {
         {
           question: '171.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['b']
+          correctAnswers: ['b','c']
         },
         {
           question: '172.JPG',
