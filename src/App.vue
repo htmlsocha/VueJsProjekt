@@ -31,6 +31,11 @@
       <div class="mt-4" v-if="show_ans == 1"> <p class="text-lx text-green-500"> Dobre odpowiedzi to: {{questions[index]['correctAnswers']}} </p></div>
         </div>
         <div v-else>
+          <div class="w-full text-purple-600 text-center text-xl rounded-full h-2.5 mb-6"> {{this.numberq}} / 40 </div>
+          <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mb-6 ">
+            <div class="bg-purple-600 h-2.5 rounded-full" v-bind:style="{ width: this.percentage + '%' }">  </div>
+          </div>
+
           <h1 class="font-bold text-4xl text-center text-purple-800"> <img v-bind:src="questions[randomquestionnumber]['question']"/> </h1>
           <label  v-for="(answer,key) in questions[randomquestionnumber]['answers']" v-bind:key="answer"
                   class="block text-xl w-full mt-4 border border-gray-400 rounded-lg py-3 px-6 text-lg-start hover:bg-indigo-100 cursor-pointer" :class="{allgood: allgood,  somethingbad: somethingbad}">
@@ -74,6 +79,8 @@ export default {
     return {
       publicPath: process.env.BASE_URL,
       index: 0,
+      numberq: 1,
+      percentage: 2.5,
       usethis: 0,
       pointsstart: 0,
       indexmax: 0,
@@ -284,7 +291,7 @@ export default {
         {
           question: '39.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a']
+          correctAnswers: ['a','b','c','d']
         },
         {
           question: '40.JPG',
@@ -294,7 +301,7 @@ export default {
         {
           question: '41.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['b','c']
+          correctAnswers: ['a','b','c']
         },
         {
           question: '42.JPG',
@@ -309,12 +316,12 @@ export default {
         {
           question: '44.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','c']
+          correctAnswers: ['c']
         },
         {
           question: '45.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['b']
+          correctAnswers: ['a','b','c','d']
         },
         {
           question: '46.JPG',
@@ -763,7 +770,7 @@ export default {
         {
           question: '135.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','d']
+          correctAnswers: ['a','b','d']
         },
         {
           question: '136.JPG',
@@ -783,17 +790,17 @@ export default {
         {
           question: '139.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['b','d']
+          correctAnswers: ['a','b','d']
         },
         {
           question: '140.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C", d: "Odpowiedź D"},
-          correctAnswers: ['a','b','c','d']
+          correctAnswers: ['a','c','d']
         },
         {
           question: '141.JPG',
           answers: {a: "Odpowiedź A", b: "Odpowiedź B", c: "Odpowiedź C"},
-          correctAnswers: ['b,''c']
+          correctAnswers: ['c']
         },
         {
           question: '142.JPG',
@@ -960,68 +967,73 @@ export default {
         {
           id: 0,
           name: 'Matematyka',
-          numbers: [0,17]
+          numbers: [0,18]
         },
         {
           id: 1,
           name: 'Chemia',
-          numbers: [18,37]
+          numbers: [18,38]
         },
         {
           id: 2,
           name: 'Materiały na formy odlewnicze',
-          numbers: [38,49]
+          numbers: [38,50]
         },
         {
           id: 3,
           name: 'Krystalizacja',
-          numbers: [50,52]
+          numbers: [50,53]
         },
         {
           id: 4,
           name: 'Metody odchyłek ważonych',
-          numbers: [53,64]
+          numbers: [53,65]
         },
         {
           id: 5,
           name: 'CAD',
-          numbers: [65,85]
+          numbers: [65,74]
         },
         {
           id: 6,
           name: 'BHP',
-          numbers: [86,92]
+          numbers: [85,92]
         },
         {
           id: 7,
-          name: 'Mechanika płynow',
-          numbers: [93,106]
+          name: 'Metale nieżelazne',
+          numbers: [74,86]
         },
         {
           id: 8,
-          name: 'Symulacje komputerowe procesów wytwarzania',
-          numbers: [107,118]
+          name: 'Mechanika płynow',
+          numbers: [92,107]
         },
         {
           id: 9,
-          name: 'Fizykochemia',
-          numbers: [119,128]
+          name: 'Symulacje komputerowe procesów wytwarzania',
+          numbers: [107,119]
         },
         {
           id: 10,
-          name: 'Technologia Form Odlewniczych',
-          numbers: [129,145]
+          name: 'Fizykochemia',
+          numbers: [119,129]
         },
         {
           id: 11,
-          name: 'Grafika Inżynierska',
-          numbers: [146,157]
+          name: 'Technologia Form Odlewniczych',
+          numbers: [129,146]
         },
         {
           id: 12,
+          name: 'Grafika Inżynierska',
+          numbers: [146,158]
+        },
+        {
+          id: 13,
           name: 'Częsci maszyn',
           numbers: [158,172]
-        }
+        },
       ]
     }
   },
@@ -1042,7 +1054,7 @@ export default {
         this.somethingbad = true;
       }
 
-      if(this.index === this.indexmax-1) {
+      if(this.index === this.indexmax) {
         this.showcheck = 1
         this.hiddenbutton = 0
         this.showsummary = 1
@@ -1074,13 +1086,16 @@ export default {
     },
     nextquestion()
     {
+
       this.indexrandom++
       this.index++
       this.selectedAnswers= []
       this.allgood = false;
       this.somethingbad = false;
       this.show_ans = 0
-      if(this.index === this.indexmax-1) {
+      this.numberq++
+      this.percentage = this.numberq/40*100
+      if(this.index === this.indexmax) {
         this.hiddenbutton = 0
         this.showsummary = 1
       }
